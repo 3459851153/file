@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <form action="./taobao_search.php" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="text" placeholder="充电宝" name="search" id="search">
+    </form> -->
+    <input type="text" placeholder="充电宝" name="search" id="search">
+    <script>
+        var search = document.getElementById("search");
+        search.addEventListener("focus", function () {
+            document.onkeyup = function () {
+                if (search.value.trim() != "") {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("post", "./taobao_search.php");
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    xhr.send('search=' + search.value);
+                    xhr.onreadystatechange = function () {
+                        if (xhr.status == 200 && xhr.readyState == 4) {
+                            console.log(xhr.responseText);
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

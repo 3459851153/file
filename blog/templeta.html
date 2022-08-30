@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./art-template-web.js"></script>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #img{
+            width: 100vh;height: 100vh;
+            position: relative;
+            left: 0;top: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="box"></div>
+    <script type="text/html" id="template">
+        <span> {{date|fill}}</span>
+    </script> -->
+    <!-- <form action="./templeta.php" method="post">
+        <input type="submit" value="提交" id="submit">
+        <input type="file" id="file" name="shilanglang">
+        <img src="./" id="img" alt="">
+    </form> -->
+    <input type="file" name="file" id="file" >
+    <input type="button" id="onload" value="提交">
+    <img src="./" id="img" alt="">
+    <script>
+        function success(data){
+            console.log("成功："+data)
+        }
+        // $("#img")
+        // var ss = document.getElementById("ss");
+        // $("#onload").click(function(){
+        //     var xhr = new XMLHttpRequest();
+        //     var file_count = $("#file")[0].files;
+        //     var form = new FormData();
+        //     form.append("avatar",file_count);
+        //     console.log(form,file_count)
+        //     xhr.upload.onprogress = function(e){
+        //         if(e.lengthComputable){
+        //             var rate = (e.loaded/e.total)*100 + "%"
+        //             console.log(rate);
+        //         }
+        //     }
+        //     xhr.open('post', 'http://www.liulongbin.top:3006/api/upload/avatar');
+        //     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        //     xhr.send('mainmain='+form);
+        //     xhr.onreadystatechange = function () {
+        //         if (xhr.status == 200 && xhr.readyState == 4) {
+        //             var main = xhr.responseText;
+        //             console.log(main);
+        //         }
+        //     }
+        // })
+
+    // document.getElementById("submit").onclick = function (e) {
+    //     e.preventDefault();
+    //     // var table = new FormData();
+    //     // table.append("name", "shilanglang");
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open('post', 'templeta.php');
+    //     xhr.upload.onprogress = function(e){
+    //         console.log(e.total,e.loaded,e.lengthComputable);
+    //     }
+    //     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    //     xhr.send("");
+    //     xhr.onreadystatechange = function () {
+    //         if (xhr.status == 200 && xhr.readyState == 4) {
+    //             console.log(xhr.responseText);
+    //         }
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // function ajax(){
+            //创建请求服务器函数变量
+            // let xhr = new XMLHttpRequest();
+            //创建发送行
+            // xhr.open('发送类型','发送路径');
+            //创建发送头
+            // xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            //创建发送主体
+            // xhr.send();
+            //创建服务器响应返回信息
+        //     xhr.onreadystatechange = function(){
+        //         if(xhr.status == 404 && xhr.readyState == 4){
+        //             console.log(xhr.responseText||xhr.responseXML);
+        //         }
+        //     }
+        // }
+
+        // var data = {
+        //     zhi: "123",
+        //     wang: 1 + 6,
+        //     sa: "pppp"
+        // }
+        // function template(name, data) {
+        //     var name_content = document.getElementById(name).innerHTML,
+        //         er = /{{(\w+)}}/,
+        //         er_exec = er.exec(name_content);
+        //         while(er_exec){
+        //             name_content = name_content.replace(er_exec[0],data[er_exec[1]]);
+        //             er_exec = er.exec(name_content);
+        //         }
+        //         return name_content
+        // }
+        // template('templeta', data);
+
+        // var data = {
+        //     zhi:"123",
+        //     wang:1+6,
+        //     sa:"pppp"
+        // }
+        // var t = tem(data,"templeta");
+        // function tem(data,content){
+        //     var content = document.querySelector("#" + content).innerHTML;
+        //     var reg = /{{(\w+)}}/;
+        //     var reg_exec = reg.exec(content);
+        //     while(reg_exec){
+        //         content = content.replace(reg_exec[0],data[reg_exec[1]]);
+        //         reg_exec = reg.exec(content);
+        //     }
+        //     return content;
+        // }
+        // document.documentElement.innerHTML = t;
+    </script>
+    <script src="./templeta.js?callback=a&name=sll"></script>
+</body>
+
+</html>

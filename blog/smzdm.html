@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item {
+            float: left;
+            width: 320px;
+            /*height: 320px;*/
+            border:1px solid #0094ff;
+            overflow: hidden;
+            margin:10px 20px;
+        }
+        
+        .item .title {
+            display: block;
+            width: 100%;
+            position: relative;
+        }
+        
+        .title img {
+            display: block;
+            width: 100%;
+        }
+        
+        .title span {
+            position: absolute;
+            right: 20px;
+            bottom: 0px;
+            width: 50px;
+            text-align: center;
+            background-color: lightgray;
+            color: gray;
+            font-size: 13px;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .content {
+            padding: 10px 0;
+        }
+        
+        .content a {
+            text-decoration: none;
+            color: black;
+            font-family: "微软雅黑";
+            font-size: 16px;
+        }
+        
+        .content p {
+            color: gray;
+            font-size: 13px;
+            font-family: "微软雅黑";
+            margin-bottom: 0;
+        }
+        .f_l{
+            float:left;
+        }
+        .f_r{
+            float:right;
+        }
+        .clearfix::before,
+        .clearfix::after{
+            content: '';
+            display: block;
+            line-height: 0;
+            height: 0;
+            clear:both;
+            visibility: hidden;
+        }
+        .info{
+            line-height: 25px;
+        }
+        .info img{
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .info a{
+            color:gray;
+            text-decoration: none;
+            font-size:12px;
+            height: 20px;
+            line-height: 20px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <button id="a">显示一个</button>
+    <button id="all">显示多个</button>
+    <div class="items">
+        <!--div作为容器-->
+        <!-- <div class="item clearfix">
+            <a href="#" class='title'>
+                <img src="imgs/novel01.jpg" alt="" />
+                <span>13:00</span>
+            </a>
+            <div class="content">
+                <a href="#">给女儿买一套学区房 篇二：二手房之什么值得改（设计篇）</a>
+                <p>一、合理看待二手房二手房的“成色”千姿百态，有拎包入住的精装修，也有水电气都没通的清水房，而更多的是介于这两</p>
+            </div>
+            <div class="info clearfix">
+                <a href="#" class='f_l'><img src="imgs/icon01.jpg" alt="" />烤红薯</a>
+                <a href="#" class='f_r'>信息:0</a>
+                <a href="#" class='f_r'>❤:0</a>
+                <a href="#" class='f_r'>赞:0</a>
+            </div>
+        </div> -->
+    </div>
+</body>
+<script src="./art-template-web.js"></script>
+<script type="text/html" id="template">
+    {{each content}}
+    <div class="item clearfix">
+        <a href="#" class='title'>
+            <img src="{{content[$index].img}}" alt="" />
+            <span>{{content[$index].time}}</span>
+        </a>
+        <div class="content">
+            <a href="#">{{content[$index].title}}</a>
+            <p>{{content[$index].novel}}</p>
+        </div>
+        <div class="info clearfix">
+            <a href="#" class='f_l'><img src="{{content[$index].icon}}" alt="" />{{content[$index].name}}</a>
+            <a href="#" class='f_r'>信息:{{content[$index].messNum}}</a>
+            <a href="#" class='f_r'>❤:{{content[$index].starNum}}</a>
+            <a href="#" class='f_r'>赞:{{content[$index].goodNum}}</a>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script>
+    var a = document.getElementById("a");
+    var all = document.getElementById("all");
+    a.onclick = function(){
+        var xml = new XMLHttpRequest();
+        xml.open("post","./smzdm.php");
+        xml.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        xml.onreadystatechange = function(){
+            if(xml.status==200&&xml.readyState==4){
+                var xml_den = JSON.parse(xml.responseText);
+                var tem_data = {
+                    img:xml_den["img"],
+                    icon:xml_den["icon"],
+                    time:xml_den["time"],
+                    title:xml_den["title"],
+                    novel:xml_den["novel"],
+                    name:xml_den["name"],
+                    messNum:xml_den["messNum"],
+                    starNum:xml_den["starNum"],
+                    goodNum:xml_den["goodNum"]
+                }
+                var tem = template("template",tem_data);
+                document.querySelector(".items").innerHTML = tem;
+            }
+        }
+        xml.send("state=1");
+    }
+    all.onclick = function(){
+        var xml = new XMLHttpRequest();
+        xml.open("post","./smzdm.php");
+        xml.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        xml.onreadystatechange = function(){
+            if(xml.status==200&&xml.readyState==4){
+                var xml_den = JSON.parse(xml.responseText);
+                var tem_data = {
+                        content:xml_den
+                    }
+                console.log(xml_den,template("template",tem_data));
+                document.querySelector(".items").innerHTML = template("template",tem_data);
+                // var all_content = "";
+                // for(var i=0;i<xml_den.length;i++){
+                //     var tem_data = {
+                //         img:xml_den[i]["img"],
+                //         icon:xml_den[i]["icon"],
+                //         time:xml_den[i]["time"],
+                //         title:xml_den[i]["title"],
+                //         novel:xml_den[i]["novel"],
+                //         name:xml_den[i]["name"],
+                //         messNum:xml_den[i]["messNum"],
+                //         starNum:xml_den[i]["starNum"],
+                //         goodNum:xml_den[i]["goodNum"]
+                //     }
+                //     var tem = template("template",tem_data);
+                //     all_content+=tem;
+                // }
+                // document.querySelector(".items").innerHTML = all_content;
+            }
+        }
+        xml.send("state=4");
+    }
+</script>
+</html>

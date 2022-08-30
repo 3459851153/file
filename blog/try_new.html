@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            transform-style: preserve-3d;
+            position: relative;
+            animation: time 3s infinite linear;
+            width: 200px;
+            height: 200px;
+        }
+        .box>div{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            /* border-radius: 100%; */
+        }
+        .box .left{
+            background-color: red;
+            left: 400px;
+            transform: rotateX(90deg) translateZ(50px);
+        }
+        .box .bottom{
+            background-color: black;
+            left: 200px;
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .box .right{
+            background-color: greenyellow;
+            transform: rotateY(110deg);
+            box-shadow: 0 0 10px black;
+        }
+        @keyframes time {
+            0%{
+                transform: rotateX(0deg);
+            }
+            100%{
+                transform: rotateX(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="bottom"></div>
+    </div>
+    <input type="text" id="chian">
+    <script src="./jquery-3.4.1.min.js"></script>
+    <script>
+        $("#chian").blur(function(){
+            $.ajax({
+                url:"http://fanyi.youdao.com/openapi.do?keyfrom=Skykai521&key=977124034&type=data&doctype=jsonp&version=1.1",
+                dataType:{
+                    query:$("#chian").val()
+                },
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(xmlhttpquerst,i,ii){
+                    console.log(xmlhttpquerst);
+                    console.log(i);
+                    console.log(ii);
+                }
+            })
+        })
+        // var xml = new XMLHttpRequest();
+        // xml.setRequestHeader("content-type","application/x-www-from-urlencoded");
+    </script>
+</body>
+</html>

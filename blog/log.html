@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color: #ededed;
+        }
+        [type=button]{
+            margin-top: 10px;
+            display: block;
+        }
+        .box{
+            position: absolute;
+            top: 50%;left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 20px;
+        }
+        .box>span{
+            display: none;
+        }
+        .caver{
+            width: 100vw;height: 100vh;
+            position: fixed;
+            z-index: 999;
+            top: 0;left: 0;
+            background-color: rgba(0, 0, 0, .5);
+            display: none;
+        }
+        .caver span{
+            display: inline-block;
+            width: 10px;height: 10px;
+            margin: 5px;
+            border-radius: 100%;
+            background-color: rgba(0, 0, 0,1);
+            position: absolute;
+            top: 50%;left: calc(50px * var(--i));
+            transform: translate(-50%,-50%);
+            animation: identifier 1.5s infinite ease-in;
+        }
+        @keyframes identifier {
+            0%{
+                left: calc(0px * var(--i));
+            background-color: rgba(0, 0, 0,1);
+            }
+            100%{
+                left: calc(100% * var(--i));
+            background-color: rgba(0, 0, 0,0);
+            }
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="caver">
+        <span style="--i:1"></span>
+        <span style="--i:2"></span>
+        <span style="--i:3"></span>
+        <span style="--i:1.5"></span>
+        <span style="--i:2.5"></span>
+        <span style="--i:3.5"></span>
+    </div>
+    <div class="box">
+        <input type="text" maxlength="10">
+        <input type="text" id="main" placeholder="输入："><span>123</span>
+        <input type="button" id="bin" value="注册">
+    </div>
+
+    <script src="./ajax_type.js"></script>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <script>
+        $("#bin").click(function(){
+            $(".caver").fadeIn();
+            var obj={
+                    type:"post", 
+                    url:"./log_php.php",
+                    data:"user="+$("#main").val(),
+                    success:function (data){
+                        console.log(data);
+                        if(data=="can"){
+                            $(".caver").fadeOut();
+                            $(".box>span").html("注册成功！").fadeIn().delay(1000).fadeOut();
+                            $("#bin").css("background","rgb(255,255,0)");
+                        }
+                        else{
+                            $(".caver").fadeOut();
+                            $(".box>span").html("注册失败！").fadeIn().delay(1000).fadeOut();
+                        }
+                    }
+                }
+                ajax_type(obj);
+            })
+    </script>
+</body>
+</html>

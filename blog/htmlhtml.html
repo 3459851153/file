@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <form target="_top" action="http://www.baidu.com" method="get"><input type="submit" value="ssssssss"></form>
+    <canvas style="border: 1px solid black;" id="canvas" width="10000" height="2000"></canvas>
+    <script>
+        //y=sinx
+        function sin(color, A) {
+            var cv = document.getElementById("canvas"),
+                CV = cv.getContext("2d");
+            CV.beginPath();
+            for (let i = 0; i < 20; i++) {
+                var y = A * Math.sin(Math.abs(i));
+                CV.arc(i * 100 + 2000, y * 100 + 1000, 1, 0, Math.PI / 180, false);
+                CV.strokeStyle = color;
+                CV.stroke();
+            }
+            CV.closePath();
+        }
+        sin1 = new sin("red",10);
+        sin2 = new sin("green",5);
+    </script>
+</body>
+
+</html>

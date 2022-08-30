@@ -1,0 +1,52 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+ul,dl,dd,dt,li{
+    list-style: none;
+}
+.box{
+    margin: auto;
+    border: 1px #333 solid;
+    width: 60%;
+    margin-top: 20px;
+    padding: 20px;
+}
+dl{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+dl dt{
+    width: 32%;
+    border: steelblue 2px inset;
+    padding: 10px;
+    margin: 10px 0;
+}
+dl dt span{
+    font-weight: bold;
+    font-size: 18px;
+}
+dl dt p{
+    width: 100%;
+    word-break: break-all;
+}
+button{
+    position: absolute;
+    z-index: 999;
+    bottom: 10px;left: 20px;
+}
+form{
+    width: 15%;
+    height: 100vh;
+    position: absolute;
+    text-align: center;
+    background-color: rgb(102, 165, 224);
+}
+form textarea{
+    width: 95%;
+    margin-top: 5px;
+    resize: none;
+    overflow-y: auto;
+}

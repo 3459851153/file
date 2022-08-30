@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas{
+            border: 1px black solid;
+            position: absolute;
+            left: 50%;top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .main{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 100%;
+            filter: blur(50px);
+            position: absolute;
+        }
+    </style>
+    <style>
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="1100" height="800"></canvas>
+    <script>
+        var canvas = document.querySelector("#canvas");
+        var ca = canvas.getContext('2d');
+        // canvas.onmousemove = function(e){
+        //     // ca.fillStyle = "red";
+        //     var x = e.offsetX;
+        //     var y = e.offsetY;
+        //     ca.arc(x,y,10,0,360);
+        //     ca.strokeStyle = "red";
+        //     ca.stroke();
+        // }
+        
+        var r = 0;
+        ca.beginPath();
+        var time = setInterval(function(){
+            ca.moveTo(120,120);
+            ca.fillStyle = "#fff";
+            ca.arc(120,120,100,0,Math.PI/180*r++,false);
+            ca.lineWidth = 20;
+            ca.lineJoin = "round";
+            ca.strokeStyle = "blue";
+            ca.closePath();
+            ca.stroke();
+            ca.fill();
+            if(r==360){
+                setTimeout(function(){
+                    document.documentElement.innerHTML = "加载成功！"
+                    clearInterval(time);
+                },1000)
+            }
+        },10)
+
+        //笑脸
+        // ca.fillStyle = "yellow";
+        // ca.arc(60,60,50,0,360);
+        // ca.strokeStyle = "orange";
+        // ca.stroke();
+        // ca.fill();
+        // ca.beginPath();
+        // ca.arc(40,35,10,0,Math.PI/180*180,true);
+        // ca.strokeStyle = "black";
+        // ca.stroke();
+        // ca.beginPath();
+        // ca.arc(80,35,10,0,Math.PI/180*180,true);
+        // ca.strokeStyle = "black";
+        // ca.stroke();
+        // ca.beginPath();
+        // ca.arc(60,75,20,0,Math.PI/180*180,false);
+        // ca.strokeStyle = "black";
+        // ca.stroke();
+
+        //月亮
+        // ca.fillStyle = "yellow";
+        // ca.arc(60,60,50,0,360);
+        // ca.strokeStyle = "yellow";
+        // ca.stroke();
+        // ca.fill();
+        // ca.beginPath();
+        // ca.fillStyle = "#fff";
+        // ca.arc(120,60,60,0,360);
+        // ca.strokeStyle = "#fff";
+        // ca.stroke();
+        // ca.fill();
+
+        //角形
+        // function rad(){
+        //         var 
+        //         r = 0,
+        //         jiao = 10,
+        //         Value = 0,
+        //         rad = 0;
+        //     function main(){
+        //         var R1 = Math.random()*100,
+        //             R2 = Math.random()*40,
+        //             x = Math.random()*1100,
+        //             y = Math.random()*800;
+        //         ca.beginPath();
+        //         ca.fillStyle = "green";
+        //         ca.arc(x,y,r,0,Math.PI*2);
+        //         ca.stroke();
+        //         ca.fill();
+        //         for(let i=0;i<jiao;i++){
+        //             ca.fillStyle = "red";
+        //             // ca.beginPath();
+        //             if(Value%2 == 0){
+        //                 ca.arc(Math.cos(rad * Math.PI/180) * R1 + x,Math.sin(rad * Math.PI/180) * R1 + y,r,0,Math.PI*2);
+        //             }else{
+        //                 ca.arc(Math.cos(rad * Math.PI/180) * R2 + x,Math.sin(rad * Math.PI/180) * R2 + y,r,0,Math.PI*2);
+        //             }
+        //             Value++;
+        //             rad+=36
+        //             console.log(rad)
+        //             ca.stroke();
+        //         }
+        //         ca.arc(Math.cos(0 * Math.PI/180) * R1 + x,Math.sin(0 * Math.PI/180) * R1 + y,r,0,Math.PI*2);
+        //             ca.stroke();
+        //             ca.fill();
+        //     }
+        //     setInterval(function(){
+        //         main();
+        //     },100,function(){
+        //         ca.clear;
+        //     })
+        // }
+        //三角函数
+        // var x=0,y=0,i=0,r=1,control=document.getElementById("canvas").offsetWidth;
+        // ca.translate(300,100);
+        // var time = setInterval(function(){
+        //     i+=100;
+        //     ca.beginPath();
+        //     ca.fillStyle = "red";
+        //     ca.arc(Math.cos(i * Math.PI/180)*Math.random()*100 + 300,Math.tan(i * Math.PI/180)*Math.random()*100 + 100,r,0,Math.PI*2);
+        //     ca.stroke();
+        //     ca.fill();
+        // },1)
+        //虚线
+        // xx(x位置，y位置，间距，长度，角度)
+        // xx(400,400,10,100,325);
+        // function xx(x1,y1,h,w,deg){
+        //    var a=h,
+        //        deg = deg * Math.PI/180,
+        //        i = true,x,y;
+        //     while(i){
+        //         ca.fillStyle = 'red';
+        //         ca.beginPath();
+        //         ca.arc(x,y,4,0,Math.PI*2);
+        //         x = a * Math.cos(deg) + x1;
+        //         y = a * Math.sin(deg) + y1;
+        //         a = a + h;
+        //         ca.stroke();
+        //         if(a>=w){
+        //             i=false;
+        //         }
+        //     }
+        // }
+        //等比数列
+        // var big = 100,
+        //     number_center = 2,
+        //     zhi = 1,
+        //     arr = new Array();
+        // for(let i = 1;i<big+1;i++){
+        //     zhi= zhi*2;
+        //     arr.push(zhi);
+        // }
+        // for(let i = 1;i<big+1;i++){
+        //     console.log(arr[i]/arr[i-1]);
+        // }
+        // console.log(arr[1]/arr[0]);
+        //鼠标跟随
+        // function sumit(){
+        //     let main = document.createElement('div');
+        //     main.classList.add("main");
+        //     document.documentElement.append(main);
+        //     document.documentElement.onmousemove = function(e){
+        //         let x = e.offsetX,
+        //             y = e.offsetY,
+        //             main = document.querySelector(".main");
+        //         main.style.left = x +150 + 'px';
+        //         main.style.top = y +150 + 'px';
+        //     }
+        // }
+        // sumit();
+        // rad();
+        // console.log(3%12,9%12,211%12,33%12)
+    </script>
+</body>
+</html>

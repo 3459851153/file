@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <input type="text" name="root" id="root" placeholder="账户："></input>
+        <input type="password" name="password" id="password" placeholder="密码："></input>
+        <input type="submit" name="submit" title="登录">
+    </form>
+    <script>
+
+class A {
+  constructor() {
+    console.log(new.target.name);
+  }
+}
+class B extends A {
+  constructor() {
+    super();
+  }
+}
+new A() // A
+new B() // B
+
+
+    </script>
+</body>
+
+</html>

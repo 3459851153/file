@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" u>
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="bin" value="发送">
+    <span id="center">
+
+    </span>
+    <script>
+       var bin=document.querySelector("#bin");
+       var center=document.querySelector('#center');
+       bin.onclick = function(){
+           var xml = new XMLHttpRequest();
+           xml.open("post",'./ajax_0.php');
+           xml.onreadystatechange = function(){
+               if(xml.readyState == 4){
+                    console.log(xml.responseText);
+                    center.innerHTML = JSON.parse(xml.responseText)[0].name;
+                }
+           }
+        //    xml.setRequestHeader("Content-type","application/x-wwwform-urlenccoded");
+           xml.send(null);
+       }
+    </script>
+</body>
+</html>

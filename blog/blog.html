@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+       <link rel="stylesheet" href="blog.css">
+        <title></title>
+    </header>
+    <body>
+        <button>我要发布</button>
+        <form action="blog.php?type=insert" method="post">
+            <textarea name="article" id="article" cols="30" rows="10"></textarea>
+            <input type="submit" name="log" value="发布">
+        </form>
+        <div class="box">
+            <dl id="main">
+                <dt>
+                    <span id="date">ssss</span>
+                    <p id="center">center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;center;</p>
+                </dt>
+            </dl>
+        </div>
+    </body>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $("#main").load("./blog.php");
+        $("button").click(function(){
+            $("form").fadeToggle();
+        })
+    </script>
+</html>

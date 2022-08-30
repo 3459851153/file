@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>异步加载地图</title>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <script src="./art-template-web.js"></script>
+</head>
+<body>
+    <script type="text/html" id="art">
+        <ul>
+            <li>{{obj.$index}}</li>
+        </ul>
+    </script>
+<script>
+    var obj = ['shilanglang',18,"sb"];
+    template("art",obj);
+</script>
+</body>
+</html>

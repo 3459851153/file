@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <script src="./bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <style>
+        #table td img{
+            float: left;
+            margin: 20px;
+            margin-top: 0;
+            width: 120px;height: 120px;
+        }
+        #table td h1{
+            margin: 5px;
+        }
+        #table td button,.max_box button{
+            display: block;
+            margin-top: 10px;
+        }
+        .box{
+            position: absolute;
+            left: 50%;top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: #ededed;
+            padding: 20px;
+        }
+        .box img{
+            width: 120px;height: 120px;
+            margin-bottom: 20px;
+        }
+        .max_box{
+            width: 100%;height: 100%;
+            position: fixed;
+            top: 0;left: 0;
+            display: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="panel panel-default">
+        <div class="panel-heading">LOL英雄</div>
+        <div class="panel-body">
+          <table class="table table-hover" id="table">
+            <!-- <tr>
+                <td>
+                    <img src="./lol图片/1371093644361.png" alt="">
+                    <h1>亚托克斯</h1>
+                    <span>暗裔剑魔</span>
+                    <button type="button" class="btn btn-primary">详情</button>
+                </td>
+            </tr> -->
+          </table>
+        </div>
+        <div class="panel-heading">
+            <input type="text" id="name_search" class="form-control" id="exampleInputName2" placeholder="英雄名称">
+        </div>
+        <div class="panel-heading">
+            拼音选择：
+        </div>
+        <div class="panel-heading" id="pinyin">
+            <button type="button" class="btn btn-default btn-lg active">A</button>
+            <button type="button" class="btn btn-default btn-lg active">B</button>
+            <button type="button" class="btn btn-default btn-lg active">C</button>
+            <button type="button" class="btn btn-default btn-lg active">D</button>
+            <button type="button" class="btn btn-default btn-lg active">E</button>
+            <button type="button" class="btn btn-default btn-lg active">F</button>
+            <button type="button" class="btn btn-default btn-lg active">G</button>
+            <button type="button" class="btn btn-default btn-lg active">H</button>
+            <button type="button" class="btn btn-default btn-lg active">I</button>
+            <button type="button" class="btn btn-default btn-lg active">J</button>
+            <button type="button" class="btn btn-default btn-lg active">K</button>
+            <button type="button" class="btn btn-default btn-lg active">L</button>
+            <button type="button" class="btn btn-default btn-lg active">M</button>
+            <button type="button" class="btn btn-default btn-lg active">N</button>
+            <button type="button" class="btn btn-default btn-lg active">O</button>
+            <button type="button" class="btn btn-default btn-lg active">P</button>
+            <button type="button" class="btn btn-default btn-lg active">Q</button>
+            <button type="button" class="btn btn-default btn-lg active">R</button>
+            <button type="button" class="btn btn-default btn-lg active">S</button>
+            <button type="button" class="btn btn-default btn-lg active">T</button>
+            <button type="button" class="btn btn-default btn-lg active">U</button>
+            <button type="button" class="btn btn-default btn-lg active">V</button>
+            <button type="button" class="btn btn-default btn-lg active">W</button>
+            <button type="button" class="btn btn-default btn-lg active">X</button>
+            <button type="button" class="btn btn-default btn-lg active">Y</button>
+            <button type="button" class="btn btn-default btn-lg active">Z</button>
+
+        </div>
+      </div>
+      <div class="max_box">
+      <div class="box">
+        <div class="panel-heading"><b>详情</b></div>
+        <table class="table">
+            <tr>
+                <td rowspan="4">
+                    <img src="./images/1381398467886.png" alt="">
+                    <button type="button" class="btn btn-default btn-lg active">购买</button>
+                </td>
+                <td><h1>凯隐</h1></td>
+              </tr>
+              <tr>
+                <td><span>影流之镰</span></td>
+              </tr>
+              <tr>
+                <td><p>孩童已死，杀手永存。”悉达·凯隐是修行暗影魔法的精英，他战斗的意义，是为了实现自己真正的命运——为了有朝一日能够率领影流教派，开创艾欧尼亚霸业的新世代。</p></td>
+              </tr>
+              <tr>
+                <td><i>tags:打野，物理，坦克</i></td>
+              </tr>
+        </table>
+      </div>
+    </div>
+      <script>
+              $("#table").load('./lol.php');
+               setTimeout(function(){
+                    $("#table").on('click',"button",function(){
+                        var xml = new XMLHttpRequest();
+                        xml.open("get","lol_2.php?name="+$(this).siblings("h1").html());
+                        xml.onreadystatechange=function(){
+                            if(xml.readyState == 4 && xml.status == 200){
+                                var xml_content = xml.responseText.split("||");
+                                console.log(xml_content);
+                                $(".box h1").html(xml_content[0]);
+                                $(".box span").html(xml_content[1]);
+                                $(".box p").html(xml_content[2]);
+                                $(".box i").html(xml_content[3]);
+                                $(".box img").attr("src",xml_content[4]);
+                                $(".max_box").css("background","rgba(0, 0, 0, .5)").fadeIn();
+                            }
+                        }
+                        xml.send(null);
+                    });
+                    $(".max_box").click(function(){
+                        $(".max_box").fadeOut();
+                    })
+                    $("#name_search").blur(function(){
+                        var xml = new XMLHttpRequest();
+                        xml.open("get","lol_2.php?name_search="+$(this).val());
+                        xml.onreadystatechange=function(){
+                            if(xml.readyState == 4 && xml.status == 200){
+                                var xml_content = xml.responseText.split("||");
+                                $("#table").html(xml_content[5]);
+                        }
+                    }
+                        xml.send(null);
+                    })
+                    $("#pinyin").on('click',"button",function(){
+                        var xml = new XMLHttpRequest();
+                        xml.open("get","lol_2.php?pinyin="+$(this).html());
+                        xml.onreadystatechange=function(){
+                            if(xml.readyState == 4 && xml.status == 200){
+                                var xml_content = xml.responseText.split("||");
+                                $("#table").html(xml_content[6]);
+                            }
+                        }
+                        xml.send(null);
+                    });
+               },1000);
+      </script>
+</body>
+</html>

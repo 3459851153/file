@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <textarea name="content" id="content" cols="30" rows="8" placeholder="反馈意见："></textarea>
+        <input type="submit" name="submit" onclick="xml">
+    </form>
+    <script>
+        function xml(){
+            // 获取元素标签
+            var content = document.getElementById("content");
+
+            // 创建XMLHttpRequest对象
+            var xml = new XMLHttpRequest();
+            
+			// 设置请求行,发送地址
+			xhr.open("post","./location");
+
+			// 设置请求头
+            xml.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // 设置请求主体
+			xml.send('content=' + content.value)
+            
+			// 接收服务器响应
+			xml.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					console.log(xml.responseText)
+				}
+			}
+        }
+    </script>
+</body>
+</html>
