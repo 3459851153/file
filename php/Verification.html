@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="s.php" method="post">
+			<input type="text" name="root_yzm"/>
+			<img src="new_file.php" id="yzm"/><br />
+			<input type="submit" value="验证"/>
+			<script type="text/javascript">
+				var yzm = document.getElementById("yzm");
+				yzm.onclick = function () {
+					var rand = parseInt(Math.random()*10);
+					this.src = 'new_file.php?' + rand;
+				}
+			</script>
+		</form>
+	</body>
+</html>

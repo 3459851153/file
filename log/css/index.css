@@ -1,0 +1,38 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+ul,li,dl,dd{
+	list-style-type: none;
+}
+img{
+	width: 100%;
+	border: none;
+}
+body{
+	background: #ededed;
+}
+header{
+	width: 100%;
+	overflow: hidden;
+}
+header .content{
+	width: 1200px;
+	margin: auto;
+	padding: 20px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+header .content .logo{
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	border-radius: 100%;
+}
+header .content .main{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 20%;
+}

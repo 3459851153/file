@@ -1,0 +1,56 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+ul,li,dl,dd{
+	list-style-type: none;
+}
+img{
+	width: 100%;
+	border: none;
+}
+body{
+	background: #ededed;
+}
+.box{
+	position: absolute;
+	left: 50%;top: 50%;
+	transform: translate(-50%,-50%);
+}
+.box form>div{
+	padding: 25px;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px #EDEDED;
+	margin: 20px 0;
+}
+.box form>div input{
+	margin-right: 10px;
+	background: #EDEDED;
+	border: none;
+	height: 25px;
+	padding-left: 10px;
+}
+.pass,.yzm{
+	position: relative;
+}
+#pass_disabled{
+	height: auto;width: 400px;
+	position: absolute;
+	right: 0;top: 50%;
+	transform: translate(105%,-50%);
+}
+#input_yzm{
+	width: 50px;
+	font-size: 18px;
+	letter-spacing: 2px;
+	font-weight: bold;
+}
+.yzm img{
+	width: 100%;
+	border: none;
+	margin-top: 10px;
+}
+.box form #log{
+	width: 100%;height: 35px;
+}

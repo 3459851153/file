@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/log.css"/>
+	</head>
+	<body>
+		<div class="box">
+			<form action="../php/mian.php?check=log" method="post">
+				<div class="root">
+					账户：<input type="text" maxlength="10" name="user" placeholder="请输入您的账户数字" required="required" pattern="^\d{10}$"/>
+				</div>
+				<div class="pass">
+					密码：<input type="password" maxlength="18" name="pass" placeholder="请输入您的密码" pattern="^[A-z]\w{7,17}$"/>
+				</div>
+				<div class="time">
+					记住账户密码：
+					<dl>
+						<dt>1天<input name="time" type="radio" value="86400000"></dt>
+						<dt>3天<input name="time" type="radio" value="259200000"></dt>
+						<dt>7天<input name="time" type="radio" value="604800000"></dt>
+					</dl>
+				</div>
+				<div class="yzm">
+					验证码：<input type="text" id="input_yzm" name="yzm" maxlength="4"/><img id="yzm" src="../php/qr.php"/>
+				</div>
+				<input id="log" name="log" type="submit" value="登录"/>
+			</form>
+		</div>
+		<script src="../js/jquery-3.4.1.min.js"></script>
+		<script>
+			$("#yzm").click(function(){
+				var rand = parseInt(Math.random()*10);
+				$(this).attr("src","../php/qr.php?" + rand);
+			})
+		</script>
+	</body>
+</html>
